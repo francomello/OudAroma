@@ -26,6 +26,17 @@ window.addEventListener('load', () => {
   sided.forEach((el) => setTimeout(() => el.classList.add('show'), 200));
 });
 
-document.getElementById('menu-toggle').addEventListener('click', () => {
-  document.querySelector('.menu').classList.toggle('show');
+// scripts.js
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('menu');
+
+  if (hamburger && menu) {
+    hamburger.addEventListener('click', () => {
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
+  } else {
+    console.warn('No se encontró el botón o el menú en el DOM');
+  }
 });
+

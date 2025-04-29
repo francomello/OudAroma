@@ -108,18 +108,13 @@ img {
 .menu a:hover::after {
   width: 100%;
 }
-.menu-toggle {
+.menu-toggle{
   display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: transparent;
+  background: none;
   border: none;
-  cursor: pointer;
-}
-.menu-toggle span {
-  width: 24px;
-  height: 2px;
-  background: var(--secondary);
+  font-size: 2rem;
+  color: var(--secondary);
+  cursor: pointer;    
 }
 /* Hero */
 .hero {
@@ -435,27 +430,8 @@ section {
 }
 
 @media (max-width: 768px) {
-  .menu {
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background: var(--white);
-    flex-direction: column;
-    width: 200px;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-  }
-  .menu a {
-    margin: 1rem;
-  }
-  .menu.open {
-    transform: translateX(0);
-  }
-  .menu-toggle {
-    display: flex;
-  }
+
+  
 }
 .producto {
   background: var(--white);
@@ -644,6 +620,53 @@ section {
 }
 .consultar-btn:hover {
   background: var(--primary-dark);
+}
+
+/* Menú normal en escritorio */
+.menu {
+  gap: 2rem;
+}
+
+/* Botón hamburguesa oculto en escritorio */
+.hamburger-btn {
+  display: none;
+}
+
+/* Estilos para Mobile */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    background-color: #000; /* Fondo negro */
+    position: absolute;
+    top: 80px; /* Ajustá si querés bajarlo más */
+    right: 20px;
+    width: 250px;
+    border-radius: 8px;
+    padding: 1rem;
+    z-index: 9999;
+  }
+
+  .menu.show {
+    display: flex;
+  }
+
+  .menu a {
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    text-align: right;
+  }
+
+  .hamburger-btn {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    z-index: 10000;
+  }
 }
 
 
@@ -868,36 +891,6 @@ section {
   color: var(--secondary);
 }
 
-@media (max-width: 768px) {
-  .hamburger-btn {
-    display: block;
-    z-index: 1002;
-  }
-
-  .menu {
-    position: fixed;
-    top: 80px;
-    right: -100%;
-    background: white;
-    width: 75%;
-    height: 100vh;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: flex-start;
-    padding: 2rem;
-    box-shadow: -5px 0 30px rgba(0,0,0,0.15);
-    transition: right 0.3s ease;
-    z-index: 1001;
-  }
-
-  .menu.show {
-    right: 0;
-  }
-
-  .hamburger-btn {
-    display: block;
-  }
-}
 .filtro-hamburger {
   display: none;
   margin: 1rem auto;
@@ -927,50 +920,11 @@ section {
     z-index: 1001;
     box-shadow: 8px 0 20px rgba(0, 0, 0, 0.1);
     padding: 2rem;
-    overflow-y: auto;
   }
 
   .sidebar.show {
     display: block;
   }
 }
-/* Menú normal desktop */
-.menu {
-  display: flex;
-  gap: 2rem;
-}
 
-/* Botón hamburguesa oculto en desktop */
-.hamburger-btn {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: var(--secondary);
-}
-
-/* Mobile settings */
-@media (max-width: 768px) {
-  .hamburger-btn {
-    display: block;
-    z-index: 1002;
-  }
-
-  .menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 80px;
-    right: 20px;
-    background: #ffffff;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    z-index: 1001;
-  }
-
-  .menu.show {
-    display: flex;
-  }
-}
+/* Limpieza final y corrección del menú hamburguesa */
