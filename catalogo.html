@@ -1,0 +1,174 @@
+<!-- catalogo.html corregido -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Catálogo de perfumes exclusivos OudAroma." />
+  <title>Catálogo | OudAroma</title>
+  <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Urbanist:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+
+  <!-- Botón de WhatsApp -->
+  <a href="https://wa.me/5491127352633" class="whatsapp" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html#home" class="logo"><img src="./assets/img/logo.png" alt="Logo" style="width: 150px;"></a>
+      <nav class="menu">
+        <!-- Botón hamburguesa header -->
+        <button class="hamburger-btn" id="menu-toggle">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <a href="index.html#home">Inicio</a>
+        <a href="catalogo.html" class="catalogo-btn">Catálogo</a>
+        <a href="index.html#beneficios">Beneficios</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sección de Productos -->
+  <section class="productos" id="lista-productos">
+    <div class="container">
+      <h2 class="section-title">Nuestros Perfumes</h2>
+      <!-- Botón de filtros mobile -->
+      <button id="filtro-toggle" class="filtro-hamburger">
+        <i class="fa-solid fa-sliders"></i> Filtros
+      </button>
+      <div class="catalog-layout">
+        <!-- Sidebar de Filtros -->
+        <aside class="sidebar">
+          <h3>Filtros</h3>
+          <!-- Barra de búsqueda -->
+          <label for="search">Buscar producto</label>
+          <input type="text" id="search" placeholder="Buscar por nombre...">
+
+          <label for="filter-genero">Género</label>
+          <select id="filter-genero">
+            <option value="">Todos</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+          </select>
+
+          <label for="filter-marca">Marca</label>
+          <select id="filter-marca">
+            <option value="">Todas</option>
+          </select>
+
+          <label for="filter-ml">Mililitros</label>
+          <select id="filter-ml">
+            <option value="">Todos</option>
+          </select>
+
+          <label>Precio USD</label>
+          <div class="price-inputs">
+            <input type="number" id="price-min" placeholder="Min" />
+            <input type="number" id="price-max" placeholder="Max" />
+          </div>
+
+          <label for="sort-by">Ordenar por</label>
+          <select id="sort-by">
+            <option value="">Relevancia</option>
+            <option value="precio-asc">Precio ↑</option>
+            <option value="precio-desc">Precio ↓</option>
+            <option value="nombre-asc">Nombre A-Z</option>
+          </select>
+
+          <button id="clear-filters">Limpiar filtros</button>
+        </aside>
+
+        <!-- Grilla de Productos -->
+        <div class="product-area">
+          <!-- Mostrar cantidad de productos encontrados -->
+          <div id="resultado-count" style="margin-bottom: 1rem; font-weight: 500; color: var(--text-dark);"></div>
+
+          <div class="product-grid" id="product-grid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 OudAroma. Todos los derechos reservados.</p>
+      <div class="social">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="catalogo.js"></script>
+  <script src="assets/js/scripts.js"></script>
+  <!-- Chatbot Flotante -->
+  <!-- Chatbot Flotante Mejorado -->
+  <div id="chatbot" class="chatbot">
+    <div class="chatbot-header">
+      <strong>Asistente de Fragancias</strong>
+      <button onclick="cerrarChatbot()">✖</button>
+    </div>
+    <div class="chatbot-body" id="chatbot-body">
+      <p>Selecciona un perfume para más detalles.</p>
+    </div>
+    <div class="chatbot-footer">
+      <input type="text" id="chatbot-input" placeholder="Escribe tu consulta..." />
+      <button onclick="enviarWhatsApp()">Enviar</button>
+    </div>
+  </div><!-- Botón flotante del Chatbot -->
+  <button id="boton-chatbot" onclick="toggleChatbot()" class="boton-chatbot">
+    <i class="fa-solid fa-comment-dots"></i>
+  </button>
+
+  <script>
+    function cerrarChatbot() {
+      document.getElementById('chatbot').style.display = 'none';
+    }
+    function abrirChatbot() {
+      document.getElementById('chatbot').style.display = 'block';
+    }
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const nombre = card.querySelector('h3').innerText;
+        const descripcion = card.querySelector('p').innerText;
+        const precio = card.querySelector('.precio').innerText;
+        document.getElementById('chatbot-body').innerHTML = `
+        <h3>${nombre}</h3>
+        <p>${descripcion}</p>
+        <p><strong>Precio:</strong> ${precio}</p>
+      `;
+        abrirChatbot();
+      });
+    });
+  </script>
+  <script>
+    // Función para mostrar el chatbot al cargar la página
+    window.onload = function () {
+      setTimeout(abrirChatbot, 2000); // Abre el chatbot después de 2 segundos
+    };
+  </script>
+
+  <!-- Fin del Chatbot -->
+</body>
+
+
+
+</html>
