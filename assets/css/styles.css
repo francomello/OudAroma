@@ -826,7 +826,7 @@ section {
 /* Media Queries */
 @media (max-width: 768px) {
   .hero {
-    background-image: url('../img/hero-mobile.png');
+    background-image: url('../img/hero-mobile.jpeg');
     background-size: cover;
     background-position: center;
     margin-top: 3rem;
